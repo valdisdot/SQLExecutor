@@ -19,6 +19,7 @@
         <version.apache-poi>5.3.0</version.apache-poi>
         <version.hikari-pool>6.0.0</version.hikari-pool>
         <version.slf4j>2.0.16</version.slf4j>
+        <version.junit>5.8.1</version.junit>
     </properties>
 
     <dependencies>
@@ -66,6 +67,18 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${version.slf4j}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${version.junit}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
