@@ -163,4 +163,16 @@ public class SequenceHolder {
     public void setPostSequence(PostSequence postSequence) {
         this.postSequence = postSequence;
     }
+
+    @Override
+    public String toString() {
+        return "SequenceHolder{" +
+                "origin=" + origin +
+                ", name='" + name + '\'' +
+                ", identifiers=" + identifiers +
+                ", snippetBody='" + snippetBody + '\'' +
+                ", sequences=" + sequences +
+                ", postSequence=" + postSequence +
+                '}';
+    }
 }
