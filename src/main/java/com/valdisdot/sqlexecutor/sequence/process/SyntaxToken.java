@@ -1,7 +1,5 @@
 package com.valdisdot.sqlexecutor.sequence.process;
 
-import dev.Status;
-
 /**
  * Enum representing syntax tokens used in sequence processing.
  * <p>
@@ -10,7 +8,6 @@ import dev.Status;
  * sections, variables, or content in the script text.
  * </p>
  */
-@Status.Done
 public enum SyntaxToken {
 
     // Basic tokens
