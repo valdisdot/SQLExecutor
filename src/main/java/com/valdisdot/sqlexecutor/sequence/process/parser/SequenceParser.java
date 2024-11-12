@@ -75,7 +75,7 @@ public class SequenceParser {
             currentSections = extractSections(currentSection, Pattern.compile(SyntaxToken.IDENTIFIERS_TOKEN.token()), 1);
             for (String identifiers : currentSections) {
                 for (String identifier : identifiers.split(SyntaxToken.LIST_SEPARATOR.token())) {
-                    builder.identifier(identifier);
+                    builder.identifier(identifier.trim());
                 }
             }
 
