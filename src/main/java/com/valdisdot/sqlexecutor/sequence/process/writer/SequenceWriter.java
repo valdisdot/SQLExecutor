@@ -34,7 +34,7 @@ public class SequenceWriter {
             writer
                     .append(SyntaxToken.TOKEN.token()).append(" ").append(SyntaxToken.HEAD.token()).append("\n")
                     .append(SyntaxToken.TOKEN.token()).append(" ").append(SyntaxToken.NAME.token()).append(SyntaxToken.SEPARATOR.token()).append(" ").append(holder.getName()).append("\n")
-                    .append(SyntaxToken.TOKEN.token()).append(" ").append(SyntaxToken.IDENTIFIERS.token()).append(SyntaxToken.SEPARATOR.token()).append(" ").append(holder.getIdentifiers().stream().collect(Collectors.joining(SyntaxToken.LIST_SEPARATOR.token()))).append("\n")
+                    .append(SyntaxToken.TOKEN.token()).append(" ").append(SyntaxToken.IDENTIFIERS.token()).append(SyntaxToken.SEPARATOR.token()).append(" ").append(holder.getIdentifiers().stream().collect(Collectors.joining(SyntaxToken.LIST_SEPARATOR.token() + " "))).append("\n")
                     .append(SyntaxToken.TOKEN.token()).append(" ").append(SyntaxToken.END.token()).append("\n\n");
 
             // Write snippets section
