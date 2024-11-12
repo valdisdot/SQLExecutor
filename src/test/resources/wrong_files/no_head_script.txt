@@ -1,0 +1,23 @@
+## snippets
+customer_predicate: = 259
+date_predicate: between '2024-01-01 00:00:00' and '2025-01-01 00:00'
+## end
+
+## sequence
+## connection: slave
+## database: sale
+## result-table: sales_b
+select * from common_sale where customer_id ${prj_predicate} and dt ${date_predicate};
+## end
+
+## sequence
+## connection: archive
+## database: sale_2024
+## result-table: sales_a
+select * from common_sale where customer_id ${prj_predicate} and dt ${date_predicate};
+## end
+
+## post-sequence
+## result-table: report
+select * from (select * from sale_a union all select * from sale_b) res order by 1
+## end

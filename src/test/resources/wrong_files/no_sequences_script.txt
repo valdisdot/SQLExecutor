@@ -1,0 +1,14 @@
+## head
+## name: sales report
+## identifiers: sales, report, year
+## end
+
+## snippets
+customer_predicate: = 259
+date_predicate: between '2024-01-01 00:00:00' and '2025-01-01 00:00'
+## end
+
+## post-sequence
+## result-table: report
+select * from (select * from sale_a union all select * from sale_b) res order by 1
+## end
