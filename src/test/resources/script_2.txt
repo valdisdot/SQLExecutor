@@ -1,0 +1,27 @@
+## head
+## name: test
+## identifiers: test
+## end
+
+## snippets
+date_predicate: > '2024-01-15 00:00:00'
+## end
+
+## sequence
+## connection: db_1
+## database: db_1
+## result-table: res_db_1
+select * from (select * from table_1 union all select * from table_2 union all select * from table_2) as res where dt ${date_predicate};
+## end
+
+## sequence
+## connection: db_2
+## database: db_2
+## result-table: res_db_2
+select * from (select * from table_1 union all select * from table_2 union all select * from table_2) as res where dt ${date_predicate};
+## end
+
+## post-sequence
+## result-table: report
+select * from (select * from sale_a union all select * from sale_b) res order by 1
+## end
