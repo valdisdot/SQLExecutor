@@ -131,13 +131,18 @@ public enum SyntaxToken {
     /**
      * Pattern for matching the prefix of a snippet variable. Default is "${".
      */
-    SNIPPET_PREFIX_TOKEN("\\$\\{\\s*"),
+    SNIPPET_VARIABLE_PREFIX_TOKEN("\\$\\{\\s*"),
 
     /**
      * Token indicating the end of a snippet placeholder.
      * Example: `${variableName}`
      */
-    SNIPPET_POSTFIX_TOKEN("\\s*\\}"),
+    SNIPPET_VARIABLE_POSTFIX_TOKEN("\\s*\\}"),
+
+    /**
+     * Token indicating the presence of a snippet variable.
+     */
+    SNIPPET_VARIABLE_ALL("(?s).*\\$\\{.*\\}.*"),
 
     /**
      * Token capturing lines that are not prefixed with a token identifier (e.g., ##).
