@@ -1,7 +1,9 @@
 package com.valdisdot.sqlexecutor.configuration;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +13,8 @@ import java.util.Properties;
 /**
  * Represents the configuration for a database connection.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ConnectionConfig {
-
     private String connectionIdentifier;
     private String jdbcURL;
     private String jdbcType;
@@ -38,7 +40,7 @@ public class ConnectionConfig {
             @JsonProperty(value = "user") String user,
             @JsonProperty(value = "password") String password,
             @JsonProperty(value = "properties") Map<String, String> properties,
-            @JsonProperty(value = "databases") List<String> databases) {
+            @JsonProperty(value = "databases") List<String> databases) throws JsonProcessingException {
         this.connectionIdentifier = connectionIdentifier.trim();
         this.jdbcURL = jdbcURL.trim();
         this.user = user;
@@ -47,7 +49,11 @@ public class ConnectionConfig {
         if (properties != null) this.properties.putAll(properties);
         int startIndex = jdbcURL.indexOf(":") + 1;
         int endIndex = jdbcURL.indexOf(":", startIndex);
-        jdbcType = jdbcURL.substring(startIndex, endIndex);
+        try {
+            jdbcType = jdbcURL.substring(startIndex, endIndex);
+        } catch (IndexOutOfBoundsException e) {
+            jdbcType = "";
+        }
     }
 
     /**

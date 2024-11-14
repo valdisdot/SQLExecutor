@@ -1,6 +1,7 @@
 package com.valdisdot.sqlexecutor.configuration;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.File;
@@ -15,6 +16,7 @@ import java.util.function.Supplier;
  * This class provides properties for input/output directories, database settings,
  * connection pool configuration, and execution-related options.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ApplicationConfig {
 
     /**
