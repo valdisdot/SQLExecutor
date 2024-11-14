@@ -1,0 +1,21 @@
+[
+  {
+    "id": "con_1",
+    "jdbcURL": "jdbc:sqlite:db_1.db",
+    "user": "user",
+    "password": "password",
+    "properties": {
+      "val": 5
+    },
+    "databases": [
+      "db"
+    ]
+  },
+  {
+    "id": "con_2",
+    "jdbcURL": "jdbc:sqlite:db_2.db",
+    "databases": [
+      "db"
+    ]
+  }
+]
