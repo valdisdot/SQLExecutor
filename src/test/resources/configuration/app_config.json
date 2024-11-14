@@ -1,0 +1,16 @@
+{
+  "application": {
+    "inputDirectory": "in",
+    "outputDirectory": "out",
+    "localDatabaseDirectory": "local"
+  },
+  "connectionPool": {
+    "size": 5,
+    "connectionTimeout": 1000,
+    "idleTimeout": 2000
+  },
+  "executor": {
+    "uniqueSuffixGenerator": "none",
+    "includeSequenceResults": true
+  }
+}
