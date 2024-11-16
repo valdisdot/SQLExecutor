@@ -18,7 +18,7 @@
         <version.sqlite>3.47.0.0</version.sqlite>
         <version.apache-poi>5.3.0</version.apache-poi>
         <version.hikari-pool>6.0.0</version.hikari-pool>
-        <version.slf4j>2.0.16</version.slf4j>
+        <version.log4j>2.23.1</version.log4j>
         <version.junit>5.8.1</version.junit>
     </properties>
 
@@ -54,19 +54,25 @@
             <version>${version.mysql}</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${version.log4j}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${version.log4j}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${version.log4j}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>${version.sqlite}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${version.slf4j}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${version.slf4j}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
