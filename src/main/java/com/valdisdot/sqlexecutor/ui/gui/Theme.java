@@ -13,13 +13,15 @@ import java.util.Properties;
  */
 public class Theme {
     private final Color applicationBackground;
-    private final Dimension applicationSize;
+    private final int applicationWidth;
+    private final int applicationHeight;
     private final int gapX;
     private final int gapY;
     private final int buttonHeight;
     private final Font buttonFont;
     private final Color textFieldsBackground;
     private final Color textFieldsForeground;
+    private final int scrollSliderWidth;
     private final Font menuTitleFont;
     private final int menuWidth;
     private final Color menuSelectButtonBackground;
@@ -63,18 +65,18 @@ public class Theme {
     public Theme(Properties themeProperties) {
         applicationBackground = getColor(themeProperties.getProperty("application.background"), Color.WHITE);
         String applicationFontName = getFontName(themeProperties.getProperty("application.font.name"), "Arial");
-        applicationSize = new Dimension(
-                getInteger(themeProperties.getProperty("application.size.width"), (int) (Toolkit.getDefaultToolkit().getScreenSize().width * 0.666)),
-                getInteger("application.size.height", (int) (Toolkit.getDefaultToolkit().getScreenSize().height * 0.8))
-        );
+        applicationWidth = getInteger(themeProperties.getProperty("application.size.width"), (int) (Toolkit.getDefaultToolkit().getScreenSize().width * 0.666));
+        applicationHeight = getInteger("application.size.height", (int) (Toolkit.getDefaultToolkit().getScreenSize().height * 0.8));
         gapX = getInteger(themeProperties.getProperty("application.components.gap.x"), 5);
         gapY = getInteger(themeProperties.getProperty("application.components.gap.y"), 4);
         buttonHeight = getInteger(themeProperties.getProperty("application.button.size.height"), 25);
         buttonFont = new Font(applicationFontName, Font.PLAIN, getInteger(themeProperties.getProperty("application.button.font.size"), 12));
         textFieldsBackground = getColor(themeProperties.getProperty("application.textfields.background"), new Color(0xE3EFED));
         textFieldsForeground = getColor(themeProperties.getProperty("application.textfields.foreground"), Color.BLACK);
+        scrollSliderWidth = getInteger("application.scroll.slider.width", 10);
         menuTitleFont = new Font(applicationFontName, Font.BOLD, getInteger(themeProperties.getProperty("menu.title.font.size"), 13));
-        menuWidth = getIntegerFromProportion(applicationSize.width - (3 * gapX), themeProperties.getProperty("application.panels.proportions"), 1, 3);
+        //4 * gapX <- between frame and menu container + 2 * between menu container and menu item + between menu container and editor container
+        menuWidth = getIntegerFromProportion(applicationWidth - (4 * gapX) - scrollSliderWidth, themeProperties.getProperty("application.panels.proportions"), 1, 3);
         menuSelectButtonBackground = getColor(themeProperties.getProperty("menu.button.select.background"), Color.GREEN);
         menuSelectButtonForeground = getColor(themeProperties.getProperty("menu.button.select.foreground"), Color.BLACK);
         badgeColors = makeBadgeColors(themeProperties.getProperty("badge.colors"), Color.GREEN, Color.ORANGE, Color.CYAN, Color.YELLOW, Color.PINK);
@@ -82,7 +84,9 @@ public class Theme {
         badgeFont = new Font(applicationFontName, Font.PLAIN, getInteger(themeProperties.getProperty("badge.font.size"), 12));
         badgeLines = getInteger(themeProperties.getProperty("badge.lines"), 1);
         badgePadding = getInteger(themeProperties.getProperty("badge.padding"), 5);
-        editorWidth = applicationSize.width - (3 * gapX) - menuWidth;
+        //4 * gapX <- between menu container and editor container + 2 * between editor container and its element + between editor container and frame
+        //2 * scrollSliderWidth <- scrollSliderWidth of menu container + scrollSliderWidth of editor container
+        editorWidth = applicationWidth - (4 * gapX) - menuWidth - (2 * scrollSliderWidth);
         editorTitleFont = new Font(applicationFontName, Font.BOLD, getInteger(themeProperties.getProperty("editor.title.font.size"), 14));
         editorSectionTitleFont = new Font(applicationFontName, Font.BOLD, getInteger(themeProperties.getProperty("editor.section.title.font.size"), 13));
         editorSectionLabelFont = new Font(applicationFontName, Font.PLAIN, getInteger(themeProperties.getProperty("editor.section.label.font.size"), 12));
@@ -161,8 +165,16 @@ public class Theme {
         return applicationBackground;
     }
 
-    public Dimension getApplicationSize() {
-        return applicationSize;
+    public int getApplicationWidth() {
+        return applicationWidth;
+    }
+
+    public int getApplicationHeight() {
+        return applicationHeight;
+    }
+
+    public int getScrollSliderWidth() {
+        return scrollSliderWidth;
     }
 
     public int getGapX() {
@@ -325,13 +337,15 @@ public class Theme {
     public String toString() {
         return "Theme{" +
                 "applicationBackground=" + applicationBackground +
-                ", applicationSize=" + applicationSize +
-                ", insetX=" + gapX +
-                ", insetY=" + gapY +
+                ", applicationWidth=" + applicationWidth +
+                ", applicationHeight=" + applicationHeight +
+                ", gapX=" + gapX +
+                ", gapY=" + gapY +
                 ", buttonHeight=" + buttonHeight +
                 ", buttonFont=" + buttonFont +
                 ", textFieldsBackground=" + textFieldsBackground +
                 ", textFieldsForeground=" + textFieldsForeground +
+                ", scrollSliderWidth=" + scrollSliderWidth +
                 ", menuTitleFont=" + menuTitleFont +
                 ", menuWidth=" + menuWidth +
                 ", menuSelectButtonBackground=" + menuSelectButtonBackground +
