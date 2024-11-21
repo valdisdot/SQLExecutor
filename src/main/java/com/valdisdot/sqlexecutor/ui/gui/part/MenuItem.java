@@ -36,6 +36,7 @@ public class MenuItem extends JPanel {
     ) {
         initializeLayout(theme);
         setBackground(theme.getApplicationBackground());
+        setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
         add(createTitleLabel(sequenceHolder, theme));
         add(createIdentifiersPanel(sequenceHolder, theme));
         add(createButtonPanel(sequenceHolder, sequenceHolderConsumer, selectVerb, theme, actionExecutor));
@@ -50,7 +51,7 @@ public class MenuItem extends JPanel {
         setLayout(new MigLayout(
                 new LC()
                         .wrap()
-                        .insets("0") //let Menu control that
+                        .insets(String.valueOf(theme.getGapY()), String.valueOf(theme.getGapX()), String.valueOf(theme.getGapY()), String.valueOf(theme.getGapX())) //let Menu control that
                         .gridGap(String.valueOf(theme.getGapX()), String.valueOf(theme.getGapY()))
         ));
     }
