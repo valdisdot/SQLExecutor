@@ -1,10 +1,7 @@
 package com.valdisdot.sqlexecutor.sequence;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Represents a container for a sequence, including its origin file, name, identifiers, script snippets,
@@ -174,5 +171,24 @@ public class SequenceHolder {
                 ", sequences=" + sequences +
                 ", postSequence=" + postSequence +
                 '}';
+    }
+
+    /**
+     * Returns the equality based on the origin File object.
+     * */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SequenceHolder holder = (SequenceHolder) o;
+        return Objects.equals(origin, holder.origin);
+    }
+
+    /**
+     * Returns the hash code calculated from the origin File object.
+     * */
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(origin);
     }
 }
