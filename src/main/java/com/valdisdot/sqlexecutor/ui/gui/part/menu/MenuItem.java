@@ -1,4 +1,4 @@
-package com.valdisdot.sqlexecutor.ui.gui.part;
+package com.valdisdot.sqlexecutor.ui.gui.part.menu;
 
 import com.valdisdot.sqlexecutor.sequence.SequenceHolder;
 import com.valdisdot.sqlexecutor.ui.gui.Theme;
