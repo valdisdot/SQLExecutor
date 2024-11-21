@@ -7,6 +7,7 @@
     <groupId>com.valdisdot.sqlexecutor</groupId>
     <artifactId>SQLExecutor</artifactId>
     <version>0.1-alpha</version>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -20,6 +21,7 @@
         <version.hikari-pool>6.0.0</version.hikari-pool>
         <version.log4j>2.23.1</version.log4j>
         <version.junit>5.8.1</version.junit>
+        <version.miglayout>3.7.4</version.miglayout>
     </properties>
 
     <dependencies>
@@ -68,12 +70,17 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>${version.log4j}</version>
         </dependency>
-
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>${version.sqlite}</version>
         </dependency>
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout</artifactId>
+            <version>${version.miglayout}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -87,4 +94,31 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>com.valdisdot.sqlexecutor.Main</mainClass>
+                                </transformer>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>META-INF/services/java.sql.Driver</resource>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
