@@ -41,7 +41,7 @@ The `## head` block includes metadata about the script, such as its name and key
 - Describes the script and its context.
 - Provides identifiers for categorization.
 
-![Head Section GUI Example](https://github.com/valdisdot/SQLExecutor/blob/main/example/head_section.png)
+![Head Section GUI Example](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/head_section.png)
 
 ### **2. Snippets section**
 The `## snippets` block defines reusable variables and conditions for parameterizing SQL queries.
@@ -58,7 +58,7 @@ The `## snippets` block defines reusable variables and conditions for parameteri
 - Declares variables to avoid hardcoding values.
 - Simplifies query construction with pre-defined conditions.
 
-![Snippets Section GUI Example](https://github.com/valdisdot/SQLExecutor/blob/main/example/snippets_section.png)
+![Snippets Section GUI Example](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/snippets_section.png)
 
 ### **3. Sequence Sections**
 The `## sequence` blocks define SQL queries to be executed on specific database connections.
@@ -77,7 +77,7 @@ The `## sequence` blocks define SQL queries to be executed on specific database 
 - Executes queries on specified databases and connections.
 - Temporarily stores query results in `result-table`s for further processing.
 
-![Sequence Section GUI Example](https://github.com/valdisdot/SQLExecutor/blob/main/example/sequence_section.png)
+![Sequence Section GUI Example](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/sequence_section.png)
 
 ### **4. Post-Sequence Section**
 The `## post-sequence` block aggregates and manipulates results from previous `## sequence` sections with internal temporary SQLite database.
@@ -94,15 +94,15 @@ The `## post-sequence` block aggregates and manipulates results from previous `#
 - Combines intermediate data from `result-table`s.
 - Performs calculations, aggregations, and final formatting of results etc.
 
-![Post-Sequence Section GUI Example](https://github.com/valdisdot/SQLExecutor/blob/main/example/post_sequence_section.png)
+![Post-Sequence Section GUI Example](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/post_sequence_section.png)
 
 ---
 
 ## **Application & Database configuration**
 
-[Example of the application.json](https://github.com/valdisdot/SQLExecutor/blob/main/example/config/application.json)
+[Example of the application.json](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/config/application.json)
 
-[Example of the connection,json](https://github.com/valdisdot/SQLExecutor/blob/main/example/config/connection.json)
+[Example of the connection,json](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/config/connection.json)
 
 ---
 
@@ -145,7 +145,7 @@ java -cp sqlexecutor.jar example.GUIExample
 
 The GUI organizes and visualizes the components of the script in the menu panel (left sidebar) and editor panel, making it easier for users to manage, modify, and execute SQL queries and their associated tasks.
 
-![GUI Example](https://github.com/valdisdot/SQLExecutor/blob/main/example/gui_overview.png)
+![GUI Example](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/gui_overview.png)
 
 ### **1. Menu**
 The left sidebar lists all available scripts, categorized by their type and tags. This allows users to quickly identify and select different sections of the workflow.
@@ -156,7 +156,7 @@ The left sidebar lists all available scripts, categorized by their type and tags
 - **Tags**: Each script is color-coded with tags to indicate its purpose, such as `report`, `saldo`, `usage statistic`.
 - **Open Button**: Allows users to open a specific script for further editing or execution.
 
-![Menu Item](https://github.com/valdisdot/SQLExecutor/blob/main/example/menu_item.png)
+![Menu Item](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/menu_item.png)
 
 ### 2. **Editor**
 This section provides detailed information and editing options for the selected script. It includes various fields for user input, such as the query body, connection settings, and result table.
@@ -169,7 +169,7 @@ This section provides detailed information and editing options for the selected 
 - **Post-query**: The section where users can define post-query operations that manipulate the results of the previous query.
 - **Final Result Table**: Displays the final result table, which in this case is `client card transactions`.
 
-![Editor Panel](https://github.com/valdisdot/SQLExecutor/blob/main/example/editor.png)
+![Editor Panel](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/editor.png)
 
 ### 3. **Control panel**
 This area allows users to reset, save, preview or execute the selected script. It includes buttons for:
@@ -178,7 +178,7 @@ This area allows users to reset, save, preview or execute the selected script. I
 - **Reset**: Revert any changes made to the script.
 - **Save**: Save the script into its source file.
 
-![Control panel](https://github.com/valdisdot/SQLExecutor/blob/main/example/control_panel.png)
+![Control panel](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/control_panel.png)
 
 ---
 
@@ -189,23 +189,24 @@ The application also provides the command line interface (CLI) mode for interact
 ### 1. **Initialization**
 When the application is launched in CLI mode, it initializes and lists all available sequence holders (script templates) that can be executed. Each sequence is assigned a unique number, which can be used to trigger the respective script.
 
-![ClI start](https://github.com/valdisdot/SQLExecutor/blob/main/example/cli_start.png)
+![ClI start](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/cli_start.png)
 
 ### 2. **Executing a Sequence**
 To execute a script, simply enter the corresponding sequence number (e.g., `3` for "Card Account Statement (detailed)"). The application will process the request and generate the results.
 
-![ClI start](https://github.com/valdisdot/SQLExecutor/blob/main/example/cli_executing.png)
+![ClI start](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/cli_executing.png)
+
 
 ### 3. **Menu Access**
 Users can type `menu` to list all available sequence holders again, allowing them to select another script or operation.
 
-![ClI start](https://github.com/valdisdot/SQLExecutor/blob/main/example/cli_menu.png)
+![ClI start](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/cli_menu.png)
 
 
 ### 4. **Exit the Application**
 To exit the application, type `exit` and the application will close.
 
-![ClI start](https://github.com/valdisdot/SQLExecutor/blob/main/example/cli_exit.png)
+![ClI start](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/cli_exit.png)
 
 
 
