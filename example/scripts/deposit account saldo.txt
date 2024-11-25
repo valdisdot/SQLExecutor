@@ -1,0 +1,49 @@
+## head
+## name: Deposit Account Saldo
+## identifiers: report, deposit account, saldo
+## end
+
+## snippets
+deposit_id: = 33
+dt: between '2024-03-01' and '2024-07-01'
+## end
+
+## sequence
+## connection: main
+## database: main
+## result-table: account
+select
+client.name,
+client.surname,
+deposit_account.*
+from deposit_account join client on deposit_account.client_id = client.id where deposit_account.id ${deposit_id}
+## end
+
+## sequence
+## connection: main
+## database: main
+## result-table: deposit_transaction_b
+select * from deposit_transaction where deposit_id ${deposit_id} and dt ${dt}
+## end
+
+## sequence
+## connection: archive
+## database: archive
+## result-table: deposit_transaction_a
+select * from deposit_transaction where deposit_id ${deposit_id} and dt ${dt}
+## end
+
+## post-sequence
+## result-table: client card transactions
+select
+    concat(account.name, " ", account.surname) "Client",
+    account.account_number "Account",
+    strftime('%Y-%m', transactions.dt) "Month",
+    sum(iif(amount > 0, transactions.amount/100.0, 0)) "Income",
+    sum(iif(amount < 0, transactions.amount/100.0, 0)) "Outcome",
+    sum(transactions.amount)/100.0 "Saldo"
+from (select * from deposit_transaction_b union all select * from deposit_transaction_a) transactions
+join account on transactions.deposit_id = account.id
+group by 1, 2, 3
+order by 1, 2, 3 desc
+## end

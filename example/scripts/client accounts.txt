@@ -1,0 +1,34 @@
+## head
+## name: Client's Accounts
+## identifiers: report, account, common
+## end
+
+## snippets
+client_id: = 25
+## end
+
+## sequence
+## connection: main
+## database: main
+## result-table: client accounts
+select
+    concat(client.name, client.surname) "Client",
+    account.account_type "Account type",
+    account.account_number "Account number",
+    account.last_balance/100 "Balance"
+from
+(
+    select
+    'Deposit' account_type,
+    deposit_account.*
+    from deposit_account
+    where client_id ${client_id}
+    union all
+    select
+    "Card" account_type,
+    card_account.*
+    from card_account
+    where client_id ${client_id}
+) account
+join client on account.client_id = client.id
+## end

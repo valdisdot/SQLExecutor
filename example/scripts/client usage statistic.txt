@@ -1,0 +1,32 @@
+## head
+## name: Client's Usage Statistic
+## identifiers: report, account, usage statistic
+## end
+
+## snippets
+client_id: = 37
+month: '2024-09'
+## end
+
+## sequence
+## connection: main
+## database: main
+## result-table: client's usage statistic
+select
+concat(name, " ", surname) "Client",
+month "Month",
+card_total_income + card_total_outcome + deposit_total_income + deposit_total_outcome "Total saldo",
+card_total_income "Cards income",
+card_total_outcome "Cards outcome",
+card_total_outcome + card_total_income "Cards saldo",
+card_outcomes "Card outcome transactions",
+deposit_total_income "Deposits income",
+deposit_total_outcome "Deposits outcome",
+deposit_total_income + deposit_total_outcome "Deposits saldo",
+deposit_withdraws "Deposit withdraws"
+from client
+left join (select ${client_id} id, strftime('%Y-%m', dt) month, sum(amount/100.0) card_total_income from card_income_transaction where card_id in (select id from card_account where client_id = ${client_id}) group by 1, 2) using(id)
+left join (select ${client_id} id, strftime('%Y-%m', dt) month, -sum(amount/100.0) card_total_outcome, count(*) card_outcomes from card_outcome_transaction where card_id in (select id from card_account where client_id = ${client_id}) group by 1, 2) using(id, month)
+left join (select ${client_id} id, strftime('%Y-%m', dt) month, sum(iif(amount > 0, amount/100.0, 0)) deposit_total_income, sum(iif(amount < 0, amount/100.0, 0)) deposit_total_outcome, count(iif(amount < 0, 1, null)) deposit_withdraws from deposit_transaction where deposit_id in (select id from deposit_account where client_id = ${client_id}) group by 1, 2) deposit using(id, month)
+where client.id = ${client_id} and month >= ${month}
+## end

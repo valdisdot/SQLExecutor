@@ -1,0 +1,66 @@
+## head
+## name: Card Account Saldo
+## identifiers: report, card account, saldo
+## end
+
+## snippets
+card_id: = 33
+dt: between '2024-03-01' and '2024-07-01'
+## end
+
+## sequence
+## connection: main
+## database: main
+## result-table: account
+select
+client.name,
+client.surname,
+card_account.*
+from card_account join client on card_account.client_id = client.id where card_account.id ${card_id}
+## end
+
+## sequence
+## connection: main
+## database: main
+## result-table: income_transaction_b
+select * from card_income_transaction where card_id ${card_id} and dt ${dt}
+## end
+
+## sequence
+## connection: main
+## database: main
+## result-table: outcome_transaction_b
+select * from card_outcome_transaction where card_id ${card_id} and dt ${dt}
+## end
+
+## sequence
+## connection: archive
+## database: archive
+## result-table: income_transaction_a
+select * from card_income_transaction where card_id ${card_id} and dt ${dt}
+## end
+
+## sequence
+## connection: archive
+## database: archive
+## result-table: outcome_transaction_a
+select * from card_outcome_transaction where card_id ${card_id} and dt ${dt}
+## end
+
+## post-sequence
+## result-table: client card transactions
+select
+    concat(account.name, " ", account.surname) "Client",
+    account.account_number "Account",
+    strftime('%Y-%m', transactions.dt) "Month",
+    sum(iif(amount > 0, transactions.amount/100.0, 0)) "Income",
+    sum(iif(amount < 0, transactions.amount/100.0, 0)) "Outcome",
+    sum(transactions.amount)/100.0 "Saldo"
+from (
+    select * from (select * from income_transaction_b union all select * from income_transaction_a) incoming
+    union all
+    select outcoming.id, outcoming.dt, outcoming.card_id, -1 * outcoming.amount amount
+    from (select * from outcome_transaction_b union all select * from outcome_transaction_a) outcoming
+) transactions join account on transactions.card_id = account.id
+order by 1, 2, 3 desc
+## end
