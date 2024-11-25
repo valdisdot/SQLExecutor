@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 /*
 * full params example
-* "mode"="cli" "configFolder"="path/to/configFolder"
+* "mode=cli" "configFolder=path/to/configFolder"
+* if "configFolder" is not present then the application will use "config" folder as a default
 * */
 public class Start {
     public static void main(String[] args) {
