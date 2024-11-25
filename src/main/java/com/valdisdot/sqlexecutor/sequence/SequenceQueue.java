@@ -157,8 +157,8 @@ public class SequenceQueue {
                         .append("database: ").append(databases.get(i)).append("\n")
                         .append("result identifier: ").append(resultIdentifiers.get(i)).append("\n")
                         .append("*/\n")
-                        .append(sequences.get(i))
-                        .append("\n");
+                        .append(sequences.get(i).trim())
+                        .append("\n\n");
             }
         }
         if (hasPostSequence()) {
@@ -167,7 +167,7 @@ public class SequenceQueue {
                     .append("post-sequence\n")
                     .append("result identifier: ").append(postSequenceResultIdentifier).append("\n")
                     .append("*/\n")
-                    .append(postSequenceBody);
+                    .append(postSequenceBody.trim());
         }
         return builder.toString().trim();
     }
