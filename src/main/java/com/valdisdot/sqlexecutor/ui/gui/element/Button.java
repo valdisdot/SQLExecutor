@@ -1,43 +1,17 @@
 package com.valdisdot.sqlexecutor.ui.gui.element;
 
-import com.valdisdot.sqlexecutor.util.ActionContainer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.ExecutorService;
+import java.util.function.Consumer;
 
 /**
  * A customizable button with support for synchronous and asynchronous actions.
  * Provides constructors for different use cases, including:
  * - Running an action on the current thread.
  * - Running an action asynchronously using an {@link ExecutorService}.
- * - Using an {@link ActionContainer} for advanced action management.
  */
 public class Button extends JButton {
-
-    /**
-     * Creates a button linked to an {@link ActionContainer}, executing its action asynchronously.
-     *
-     * @param actionContainer the action container providing the action verb and callable.
-     * @param actionExecutor  the executor service to handle the action asynchronously.
-     * @param backgroundColor the background color of the button.
-     * @param foregroundColor the foreground (text) color of the button.
-     * @param height          the height of the button.
-     * @param font            the font of the button label.
-     * @param <T>             the type parameter of the {@link ActionContainer}.
-     */
-    public <T> Button(
-            ActionContainer<T> actionContainer,
-            ExecutorService actionExecutor,
-            Color backgroundColor,
-            Color foregroundColor,
-            int height,
-            Font font
-    ) {
-        this(actionContainer.getActionVerb(), backgroundColor, foregroundColor, height, font);
-        addAction(actionContainer, actionExecutor);
-    }
-
     /**
      * Creates a button that executes a {@link Runnable} asynchronously using an {@link ExecutorService}.
      *
@@ -123,16 +97,8 @@ public class Button extends JButton {
         addActionListener(e -> executorService.submit(action));
     }
 
-    /**
-     * Adds an action from an {@link ActionContainer}, executed asynchronously using an {@link ExecutorService}.
-     *
-     * @param actionContainer the container providing the callable and consumer for execution.
-     * @param actionExecutor  the executor service to handle the callable asynchronously.
-     * @param <T>             the type parameter of the {@link ActionContainer}.
-     */
-    public <T> void addAction(ActionContainer<T> actionContainer, ExecutorService actionExecutor) {
-        addActionListener(e -> actionContainer.getActionExecutionConsumer()
-                .accept(actionExecutor.submit(actionContainer.getCallable())));
+    public void addAction(Runnable action, Consumer<Runnable> actionExecutor) {
+        addActionListener(e -> actionExecutor.accept(action));
     }
 
     /**
@@ -150,5 +116,6 @@ public class Button extends JButton {
         setForeground(foregroundColor);
         setFocusPainted(false);
         setFont(font);
+        setBorder(BorderFactory.createLineBorder(Color.GRAY));
     }
 }
