@@ -1,0 +1,16 @@
+[
+  {
+    "id": "main",
+    "jdbcURL": "jdbc:sqlite:example/main.db",
+    "databases": [
+      "main"
+    ]
+  },
+    {
+    "id": "archive",
+    "jdbcURL": "jdbc:sqlite:example/archive.db",
+    "databases": [
+      "archive"
+    ]
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "application": {
+    "inputDirectory": "example/scripts",
+    "outputDirectory": "example/results",
+    "localDatabaseDirectory": "example/cache"
+  },
+  "connectionPool": {
+    "size": 1,
+    "connectionTimeout": 6000000,
+    "idleTimeout": 6000000
+  },
+  "executor": {
+    "uniqueSuffixGenerator": "timestamp",
+    "includeSequenceResults": false
+  }
+}
