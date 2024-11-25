@@ -40,8 +40,8 @@ public class Badge extends JLabel {
 
         // Creates a compound border with an inner border for padding
         setBorder(new CompoundBorder(
-                BorderFactory.createLineBorder(foreground, 1), // Outer border (1px wide)
-                BorderFactory.createEmptyBorder(borderPadding, borderPadding, borderPadding, borderPadding) // Inner padding
+                BorderFactory.createLineBorder(foreground), // Outer border (1px wide)
+                BorderFactory.createEmptyBorder(borderPadding / 2, borderPadding, borderPadding / 2, borderPadding) // Inner padding
         ));
     }
 }
