@@ -5,6 +5,7 @@ import com.valdisdot.sqlexecutor.sequence.Sequence;
 import com.valdisdot.sqlexecutor.sequence.SequenceHolder;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -72,15 +73,25 @@ public class SequenceHolderBuilder {
     }
 
     /**
+     * Adds identifiers (tags) to the sequence holder.
+     *
+     * @param identifiers the identifiers to add
+     * @return the builder instance for method chaining
+     */
+    public SequenceHolderBuilder identifiers(Collection<String> identifiers) {
+        for (String identifier : identifiers)
+            if (identifier != null && !identifier.isBlank()) instance.addIdentifier(identifier);
+        return this;
+    }
+
+    /**
      * Sets the snippet body for the sequence holder.
      *
      * @param snippetBody the snippet body to set
      * @return the builder instance for method chaining
-     * @throws SequenceBuildingException if the snippet body is null or empty
      */
-    public SequenceHolderBuilder snippet(String snippetBody) throws SequenceBuildingException {
-        if (snippetBody == null || snippetBody.isBlank())
-            throw new SequenceBuildingException("Sequence holder snippet is empty");
+    public SequenceHolderBuilder snippet(String snippetBody) {
+        if (snippetBody == null) instance.setSnippetBody("");
         instance.setSnippetBody(snippetBody);
         return this;
     }

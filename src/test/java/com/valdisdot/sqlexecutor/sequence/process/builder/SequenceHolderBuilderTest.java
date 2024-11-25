@@ -24,8 +24,6 @@ public class SequenceHolderBuilderTest {
         assertThrows(SequenceBuildingException.class, () -> builder.origin(dir));
         assertThrows(SequenceBuildingException.class, () -> builder.origin(new File(dir, "file.txt")));
         dir.delete();
-        assertThrows(SequenceBuildingException.class, () -> builder.snippet(null));
-        assertThrows(SequenceBuildingException.class, () -> builder.snippet(""));
     }
 
     @Test
