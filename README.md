@@ -100,9 +100,9 @@ The `## post-sequence` block aggregates and manipulates results from previous `#
 
 ## **Application & Database configuration**
 
-[Example of the application.json](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/config/application.json)
+[Example of the application.json](https://github.com/valdisdot/SQLExecutor/blob/main/example/config/application.json)
 
-[Example of the connection,json](https://github.com/valdisdot/SQLExecutor/blob/main/example/images/config/connection.json)
+[Example of the connection,json](https://github.com/valdisdot/SQLExecutor/blob/main/example/config/connection.json)
 
 ---
 
