@@ -8,6 +8,7 @@ import com.valdisdot.sqlexecutor.executor.database.DatabaseManagerException;
 import com.valdisdot.sqlexecutor.sequence.SequenceHolder;
 import com.valdisdot.sqlexecutor.ui.gui.controller.Controller;
 import com.valdisdot.sqlexecutor.ui.gui.element.ScrollPanel;
+import com.valdisdot.sqlexecutor.ui.gui.element.WindowMenuBar;
 import com.valdisdot.sqlexecutor.ui.gui.notification.Notificator;
 import com.valdisdot.sqlexecutor.ui.gui.part.SequenceHolderEditorPanel;
 import com.valdisdot.sqlexecutor.ui.gui.part.menu.SequenceHolderMenu;
@@ -53,6 +54,10 @@ public class GraphicalUI implements Runnable {
         this.controller = new Controller(new SequenceExecutor(new DatabaseManager(connectionConfigs, applicationConfig), applicationConfig), new Notificator(executorService, theme), localization);
         this.applicationConfig = applicationConfig;
         this.holderEditorPanels = new LinkedHashMap<>();
+        prebuildUI();
+    }
+
+    private void prebuildUI() {
         this.rootPanel = new JPanel(new MigLayout(
                 new LC()
                         .insets(String.valueOf(theme.getGapY()), String.valueOf(theme.getGapX()), String.valueOf(theme.getGapY()), String.valueOf(theme.getGapX()))
@@ -64,6 +69,13 @@ public class GraphicalUI implements Runnable {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.add(rootPanel);
+
+        WindowMenuBar menuBar = new WindowMenuBar(theme.getMenuBarBackground(), theme.getMenuBarForeground(), theme.getButtonFont());
+        WindowMenuBar.WindowMenu fileMenu = menuBar.addWindowMenu(localization.getTranslation("window.menu.file"));
+        fileMenu.addMenuItem(localization.getTranslation("window.menu.file.reloadUI"), this::initUI);
+        WindowMenuBar.WindowMenu windowMenu = menuBar.addWindowMenu(localization.getTranslation("window.menu.window"));
+        windowMenu.addCheckBoxMenuItem(localization.getTranslation("window.menu.window.alwaysOnTop"), false, frame::setAlwaysOnTop);
+        frame.setJMenuBar(menuBar);
     }
 
     private void initUI() {
