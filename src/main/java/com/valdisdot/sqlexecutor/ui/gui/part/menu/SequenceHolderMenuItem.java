@@ -18,7 +18,7 @@ import java.util.function.Consumer;
  * This class represents a single menu item displayed within the user interface.
  * It displays information about a sequence and provides a button to interact with it.
  */
-public class MenuItem extends JPanel {
+public class SequenceHolderMenuItem extends JPanel {
     /**
      * Constructs a new MenuItem instance.
      *
@@ -28,7 +28,7 @@ public class MenuItem extends JPanel {
      * @param theme                  the theme to use for styling
      * @param actionExecutor         the executor service used for executing actions on the sequence
      */
-    public MenuItem(
+    public SequenceHolderMenuItem(
             SequenceHolder sequenceHolder,
             Consumer<SequenceHolder> sequenceHolderConsumer,
             String selectVerb,

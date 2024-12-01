@@ -12,13 +12,13 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 
-public class SequenceSection extends InternalPanel {
+public class SequenceHolderSequenceSection extends InternalPanel {
     private TextField connectionTextField;
     private TextField databaseTextField;
     private TextField resultTextField;
     private TextArea sequenceBodyTextArea;
 
-    public SequenceSection(Sequence sequence, String sequenceSectionTitle, int sequenceNumber, String connectionFieldLabel, String databaseFieldLabel, String resultTableFieldLabel, String sequenceBodyFieldLabel, Theme theme) {
+    public SequenceHolderSequenceSection(Sequence sequence, String sequenceSectionTitle, int sequenceNumber, String connectionFieldLabel, String databaseFieldLabel, String resultTableFieldLabel, String sequenceBodyFieldLabel, Theme theme) {
         super(theme);
         add(new Label(sequenceSectionTitle + " #" + sequenceNumber, theme.getEditorSectionTitleFont(), theme.getTextFieldsForeground(), theme.getEditorWidth()));
         JPanel fields = new JPanel(new MigLayout(

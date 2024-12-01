@@ -15,27 +15,27 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditorContainerPanel extends InternalPanel {
-    private HeadSection headSection;
-    private SnippedSection snippedSection;
-    private List<SequenceSection> sequenceSections;
-    private PostSequenceSection postSequenceSection;
+public class SequenceHolderEditorContainerPanel extends InternalPanel {
+    private SequenceHolderHeadSection headSection;
+    private SequenceHolderSnippedSection snippedSection;
+    private List<SequenceHolderSequenceSection> sequenceSections;
+    private SequenceHolderPostSequenceSection postSequenceSection;
 
-    public EditorContainerPanel(
+    public SequenceHolderEditorContainerPanel(
             SequenceHolder sequenceHolder,
             Theme theme,
             Localization localization
     ) {
         super(theme);
         JPanel scrollable = new InternalPanel(theme);
-        headSection = new HeadSection(sequenceHolder, theme);
+        headSection = new SequenceHolderHeadSection(sequenceHolder, theme);
         add(headSection);
-        snippedSection = new SnippedSection(sequenceHolder, localization.getTranslation("editor.snippet.section"), theme);
+        snippedSection = new SequenceHolderSnippedSection(sequenceHolder, localization.getTranslation("editor.snippet.section"), theme);
         scrollable.add(snippedSection);
         sequenceSections = new ArrayList<>(sequenceHolder.getSequences().size());
         int i = 1;
         for (Sequence sequence : sequenceHolder.getSequences()) {
-            SequenceSection sequenceSection = new SequenceSection(
+            SequenceHolderSequenceSection sequenceSection = new SequenceHolderSequenceSection(
                     sequence,
                     localization.getTranslation("editor.sequence.section"),
                     i++,
@@ -48,7 +48,7 @@ public class EditorContainerPanel extends InternalPanel {
             sequenceSections.add(sequenceSection);
             scrollable.add(sequenceSection);
         }
-        postSequenceSection = new PostSequenceSection(
+        postSequenceSection = new SequenceHolderPostSequenceSection(
                 sequenceHolder,
                 localization.getTranslation("editor.postSequence.section"),
                 localization.getTranslation("editor.postSequence.resultTable.label") + ":",
@@ -71,7 +71,7 @@ public class EditorContainerPanel extends InternalPanel {
                 .origin(previous.getOrigin())
                 .identifiers(previous.getIdentifiers())
                 .snippet(snippedSection.getSnippetTextArea().getText());
-        for (SequenceSection sequenceSection : sequenceSections) {
+        for (SequenceHolderSequenceSection sequenceSection : sequenceSections) {
             builder.sequenceBuilder()
                     .connectionIdentifier(sequenceSection.getConnectionTextField().getText())
                     .databaseName(sequenceSection.getDatabaseTextField().getText())
@@ -98,7 +98,7 @@ public class EditorContainerPanel extends InternalPanel {
         snippedSection.getSnippetTextArea().setText(sequenceHolder.getSnippetBody());
         for (int i = 0; i < sequenceSections.size(); ++i) {
             Sequence sequence = sequenceHolder.getSequences().get(i);
-            SequenceSection sequenceSection = sequenceSections.get(i);
+            SequenceHolderSequenceSection sequenceSection = sequenceSections.get(i);
             sequenceSection.getConnectionTextField().setText(sequence.getConnectionIdentifier());
             sequenceSection.getDatabaseTextField().setText(sequence.getDatabaseName());
             sequenceSection.getResultTextField().setText(sequence.getResultTable());

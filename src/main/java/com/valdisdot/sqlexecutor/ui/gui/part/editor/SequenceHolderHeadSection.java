@@ -6,10 +6,10 @@ import com.valdisdot.sqlexecutor.ui.gui.element.IdentifiersPanel;
 import com.valdisdot.sqlexecutor.ui.gui.element.InternalPanel;
 import com.valdisdot.sqlexecutor.ui.gui.element.Label;
 
-public class HeadSection extends InternalPanel {
+public class SequenceHolderHeadSection extends InternalPanel {
     private SequenceHolder sequenceHolder;
 
-    public HeadSection(SequenceHolder sequenceHolder, Theme theme) {
+    public SequenceHolderHeadSection(SequenceHolder sequenceHolder, Theme theme) {
         super(theme);
         this.sequenceHolder = sequenceHolder;
         add(new Label(this.sequenceHolder.getName(), theme.getEditorTitleFont(), theme.getTextFieldsForeground(), theme.getEditorWidth()));

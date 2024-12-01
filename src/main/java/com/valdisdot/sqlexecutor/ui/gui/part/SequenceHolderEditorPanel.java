@@ -12,13 +12,13 @@ import com.valdisdot.sqlexecutor.ui.gui.controller.Controller;
 import com.valdisdot.sqlexecutor.ui.gui.element.Button;
 import com.valdisdot.sqlexecutor.ui.gui.element.ButtonPanel;
 import com.valdisdot.sqlexecutor.ui.gui.element.InternalPanel;
-import com.valdisdot.sqlexecutor.ui.gui.part.editor.EditorContainerPanel;
+import com.valdisdot.sqlexecutor.ui.gui.part.editor.SequenceHolderEditorContainerPanel;
 
 import java.io.File;
 import java.util.concurrent.ExecutorService;
 
-public class EditorPanel extends InternalPanel {
-    public EditorPanel(
+public class SequenceHolderEditorPanel extends InternalPanel {
+    public SequenceHolderEditorPanel(
             SequenceHolder sequenceHolder,
             Controller controller,
             ExecutorService executorService,
@@ -26,7 +26,7 @@ public class EditorPanel extends InternalPanel {
             Localization localization
     ) {
         super(theme);
-        EditorContainerPanel editorContainerPanel = new EditorContainerPanel(sequenceHolder, theme, localization);
+        SequenceHolderEditorContainerPanel editorContainerPanel = new SequenceHolderEditorContainerPanel(sequenceHolder, theme, localization);
         //reset
         Button resetButton = new Button(
                 localization.getTranslation("editor.reset"),

@@ -9,8 +9,8 @@ import com.valdisdot.sqlexecutor.sequence.SequenceHolder;
 import com.valdisdot.sqlexecutor.ui.gui.controller.Controller;
 import com.valdisdot.sqlexecutor.ui.gui.element.ScrollPanel;
 import com.valdisdot.sqlexecutor.ui.gui.notification.Notificator;
-import com.valdisdot.sqlexecutor.ui.gui.part.EditorPanel;
-import com.valdisdot.sqlexecutor.ui.gui.part.menu.Menu;
+import com.valdisdot.sqlexecutor.ui.gui.part.SequenceHolderEditorPanel;
+import com.valdisdot.sqlexecutor.ui.gui.part.menu.SequenceHolderMenu;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 import org.slf4j.Logger;
@@ -37,8 +37,8 @@ public class GraphicalUI implements Runnable {
 
     private JFrame frame;
     private JPanel rootPanel;
-    private Map<SequenceHolder, EditorPanel> holderEditorPanels;
-    private EditorPanel last;
+    private Map<SequenceHolder, SequenceHolderEditorPanel> holderEditorPanels;
+    private SequenceHolderEditorPanel last;
 
     public GraphicalUI(
             ApplicationConfig applicationConfig,
@@ -78,7 +78,7 @@ public class GraphicalUI implements Runnable {
         holderEditorPanels.clear();
         rootPanel.removeAll();
 
-        Menu menu = new Menu(
+        SequenceHolderMenu menu = new SequenceHolderMenu(
                 localization.getTranslation("menu.button"),
                 sequenceHolder -> {
                     rootPanel.remove(last);
@@ -94,7 +94,7 @@ public class GraphicalUI implements Runnable {
 
         for (SequenceHolder holder : sequenceHolders) {
             menu.addSequenceHolder(holder);
-            last = new EditorPanel(holder, controller, executorService, theme, localization);
+            last = new SequenceHolderEditorPanel(holder, controller, executorService, theme, localization);
             holderEditorPanels.put(holder, last);
         }
         rootPanel.add(new ScrollPanel(

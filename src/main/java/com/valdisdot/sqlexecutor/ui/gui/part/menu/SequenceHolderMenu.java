@@ -10,13 +10,13 @@ import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
 
-public class Menu extends JPanel {
+public class SequenceHolderMenu extends JPanel {
     private final String selectVerb;
     private final Consumer<SequenceHolder> sequenceHolderConsumer;
     private final ExecutorService actionExecutor;
     private final Theme theme;
 
-    public Menu(
+    public SequenceHolderMenu(
             String selectVerb,
             Consumer<SequenceHolder> sequenceHolderConsumer,
             ExecutorService actionExecutor,
@@ -36,7 +36,7 @@ public class Menu extends JPanel {
     }
 
     public void addSequenceHolder(SequenceHolder sequenceHolder) {
-        add(new MenuItem(sequenceHolder, sequenceHolderConsumer, selectVerb, theme, actionExecutor));
+        add(new SequenceHolderMenuItem(sequenceHolder, sequenceHolderConsumer, selectVerb, theme, actionExecutor));
         revalidate();
         repaint();
     }

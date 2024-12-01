@@ -10,11 +10,11 @@ import com.valdisdot.sqlexecutor.ui.gui.element.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class PostSequenceSection extends InternalPanel {
+public class SequenceHolderPostSequenceSection extends InternalPanel {
     private TextField resultTextField;
     private TextArea postSequenceBodyTextArea;
 
-    public PostSequenceSection(SequenceHolder sequenceHolder, String postSequenceSectionTitle, String resultTableFieldLabel, String postSequenceBodyFieldLabel, Theme theme) {
+    public SequenceHolderPostSequenceSection(SequenceHolder sequenceHolder, String postSequenceSectionTitle, String resultTableFieldLabel, String postSequenceBodyFieldLabel, Theme theme) {
         super(theme);
         add(new Label(postSequenceSectionTitle, theme.getEditorSectionTitleFont(), theme.getTextFieldsForeground(), theme.getEditorWidth()));
         JPanel fields = new InternalPanel(theme);

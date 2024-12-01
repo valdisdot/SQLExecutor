@@ -10,10 +10,10 @@ import com.valdisdot.sqlexecutor.ui.gui.element.TextArea;
 import javax.swing.*;
 import java.awt.*;
 
-public class SnippedSection extends InternalPanel {
+public class SequenceHolderSnippedSection extends InternalPanel {
     private TextArea snippetTextArea;
 
-    public SnippedSection(SequenceHolder sequenceHolder, String snippetSectionLabel, Theme theme) {
+    public SequenceHolderSnippedSection(SequenceHolder sequenceHolder, String snippetSectionLabel, Theme theme) {
         super(theme);
         this.snippetTextArea = new TextArea(
                 sequenceHolder.hasSnippetBody() ? sequenceHolder.getSnippetBody() : "",
