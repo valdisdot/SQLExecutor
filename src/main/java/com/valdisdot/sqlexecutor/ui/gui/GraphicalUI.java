@@ -21,6 +21,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -73,6 +75,8 @@ public class GraphicalUI implements Runnable {
         WindowMenuBar menuBar = new WindowMenuBar(theme.getMenuBarBackground(), theme.getMenuBarForeground(), theme.getButtonFont());
         WindowMenuBar.WindowMenu fileMenu = menuBar.addWindowMenu(localization.getTranslation("window.menu.file"));
         fileMenu.addMenuItem(localization.getTranslation("window.menu.file.reloadUI"), this::initUI);
+        WindowMenuBar.WindowMenu sequenceMenu = menuBar.addWindowMenu(localization.getTranslation("window.menu.sequence"));
+        sequenceMenu.addMenuItem(localization.getTranslation("window.menu.sequence.makeSeed"), () -> controller.writeSequenceHolderSeedFile(new File(applicationConfig.getInputDirectory(), "seed_" + LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) + ".txt")));
         WindowMenuBar.WindowMenu windowMenu = menuBar.addWindowMenu(localization.getTranslation("window.menu.window"));
         windowMenu.addCheckBoxMenuItem(localization.getTranslation("window.menu.window.alwaysOnTop"), false, frame::setAlwaysOnTop);
         frame.setJMenuBar(menuBar);
