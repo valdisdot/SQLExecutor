@@ -42,7 +42,7 @@ public class SequenceHolderBuilder {
      */
     public SequenceHolderBuilder origin(File origin) throws SequenceBuildingException {
         if (origin == null) throw new SequenceBuildingException("Sequence holder origin file is null");
-        if (origin.isDirectory() || !origin.exists())
+        if (origin.isDirectory())
             throw new SequenceBuildingException("Sequence holder origin file is not a file or does not exist");
         instance.setOrigin(origin);
         return this;
