@@ -62,6 +62,8 @@ public class Theme {
     private final Color popupErrorButtonBackground;
     private final Color popupErrorButtonForeground;
     private Image applicationIcon;
+    private final Color menuBarBackground;
+    private final Color menuBarForeground;
 
     public Theme() {
         this(
@@ -139,6 +141,8 @@ public class Theme {
             applicationIcon = ImageIO.read(iconInputStream);
         } catch (Exception ignored) {
         }
+        menuBarBackground = getColor(themeProperties.getProperty("application.menubar.background"), Color.YELLOW);;
+        menuBarForeground = getColor(themeProperties.getProperty("application.menubar.foreground"), Color.BLACK);;
     }
 
     private Color getColor(String hexValue, Color defaultColor) {
@@ -380,6 +384,14 @@ public class Theme {
 
     public Image getApplicationIcon() {
         return applicationIcon;
+    }
+
+    public Color getMenuBarBackground() {
+        return menuBarBackground;
+    }
+
+    public Color getMenuBarForeground() {
+        return menuBarForeground;
     }
 
     @Override
