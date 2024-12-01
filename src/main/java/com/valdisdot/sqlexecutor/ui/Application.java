@@ -23,7 +23,7 @@ import java.util.Locale;
 public class Application {
     public void run(Mode mode, File configFolder) {
         Logger logger = LoggerFactory.getLogger(this.getClass());
-        String version = "ver. 0.1-alpha";
+        String version = "ver. 1.0";
         ApplicationConfig applicationConfig = null;
         List<ConnectionConfig> connectionConfigs = null;
         Exception exception = null;
