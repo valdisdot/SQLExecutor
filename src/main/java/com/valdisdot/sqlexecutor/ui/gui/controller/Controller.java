@@ -174,4 +174,13 @@ public class Controller {
                 localization.getTranslation("notification.button.decline")
         );
     }
+
+    public void writeSequenceHolderSeedFile(File destination) {
+        try {
+            sequenceWriter.writeSequenceHolderSeed(destination);
+            Desktop.getDesktop().open(destination);
+        } catch (IOException | SequenceWriterException e) {
+            showErrorNotification(e);
+        }
+    }
 }
